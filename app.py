@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():
     return render_template('index.html')
 
@@ -18,9 +18,12 @@ def send_email():
     
     recipient = "contact@swiftwebmarketing.com"
 
+    return ""
     
-
-
+def create_app():
+    """ for production
+    """
+    return app
 
 
 if __name__ == '__main__':
