@@ -486,10 +486,11 @@ p {
 .navbar-brand {
   padding: 0; }
   .navbar-brand img {
-    width: 404px; }
+    width: 404px; } /* Full size for desktop */
     @media (max-width: 767px) {
-      .navbar-brand img {
-        width: 384px; } }
+      .navbar-brand img { /* Needs to scale with viewport to accomodate narrow phones */
+        width:70vw;
+       } }
 
 .navbar-toggler {
   padding: 0; }

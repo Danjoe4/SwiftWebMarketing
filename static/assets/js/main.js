@@ -89,21 +89,5 @@
             navbarCollapse.classList.remove('show')
         })
     );
-
-
-    //===== glide slider for testimonial
-    
-    new Glide('.glide', {
-        type: 'slider',
-        perView: 1,
-        animationDuration: 1000
-    }).mount()
-
-    //WOW Scroll Spy
-    var wow = new WOW({
-        //disabled for mobile
-        mobile: false
-    });
-    wow.init();
     
 })();
