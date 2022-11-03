@@ -23,28 +23,12 @@ def send_email():
 def create_app():
     """ production settings
     """
-    import logging.handlers
-
-    # Create logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-
-    # Handler 
-    LOG_FILE = '/tmp/app.log'
-    handler = logging.handlers.RotatingFileHandler(LOG_FILE, maxBytes=1048576, backupCount=5)
-    handler.setLevel(logging.INFO)
-
-    # Formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-    # Add Formatter to Handler
-    handler.setFormatter(formatter)
-
-    # add Handler to Logger
-    logger.addHandler(handler)
-
+    import logging
+    logging.basicConfig(filename='error.log',level=logging.INFO)
+    
     return app
 
 
 if __name__ == '__main__':
-    app.run()
+    #app= create_app() # run in production mode locally
+    app.run(debug=True) # for local testing
