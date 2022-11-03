@@ -1,0 +1,22 @@
+
+uses python 3.10
+source env/bin/activate
+# start db and remember to shut off later
+sudo service postgresql status/start/stop/restart
+# enter psql prompt
+sudo -u postgres psql
+# db config file 
+sudo nano /etc/postgresql/14/main/pg_hba.conf
+
+# testing/local db
+export DATABASE_URL=postgres://postgres:iamcool4@127.0.0.1:5432/swiftwebmarketing
+
+# super user 
+python manage.py createsuperuser
+daniel-broderick@swiftwebmarketing.com 
+password in BitWarden
+
+# migrations and running
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
+./manage.py help
