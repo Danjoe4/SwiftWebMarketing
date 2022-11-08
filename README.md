@@ -8,6 +8,8 @@ https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-
 lsof -i :5000 
 # then 
 kill pid
+# reset clock to sync signature
+sudo hwclock -s
 
 # To connect #####
 ssh -i .ssh/swiftwebmarketing_home_site.pem ubuntu@ec2-100-27-11-64.compute-1.amazonaws.com 

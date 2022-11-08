@@ -91,3 +91,56 @@
     );
     
 })();
+
+//=====  Contact Form 
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+const alert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
+    `   <div>${message}</div>`,
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+
+
+const alertTrigger = document.getElementById('liveAlertBtn')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    console.log('clicked');
+    // alert if the form is valid
+    formData = {
+        'name'    : document.querySelector('input[name="name"]').value,
+        'email'   : document.querySelector('input[name="email"]').value,
+        'number'   : document.querySelector('input[name="number"]').value,
+        'subject' : document.querySelector('input[name="subject"]').value,
+        'message' : document.querySelector('textarea[name="message"]').value
+    };
+
+    if (formData['name'] && formData['email'] && formData['number'] && formData['subject'] && 
+    formData['message'] && alertPlaceholder.innerHTML == '') {
+        alert('Your message has been sent. A member of our team will email you shortly', 'success')
+        // clear the form
+        document.querySelector('input[name="name"]').value = '';
+        document.querySelector('input[name="email"]').value = '';
+        document.querySelector('input[name="number"]').value = '';
+        document.querySelector('input[name="subject"]').value = '';
+        document.querySelector('textarea[name="message"]').value = '';
+
+        // wait 5 seconds and dismiss the alert
+        setTimeout(() => {
+            alertPlaceholder.innerHTML = '';
+            }, 5000)
+    }
+    else if (alertPlaceholder.innerHTML == '') {
+        alert('Please fill out all the fields', 'danger')
+        setTimeout(() => {
+            alertPlaceholder.innerHTML = '';
+            }, 2000)
+    }
+  })
+}
