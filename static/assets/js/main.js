@@ -106,11 +106,36 @@ const alert = (message, type) => {
   alertPlaceholder.append(wrapper)
 }
 
+// actual send action
+
+function SubForm (formData){
+    // send data to server
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/email');
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                var response = '';
+                try {
+                    response = JSON.parse(this.responseText);
+                } catch (err) {
+                    response = this.responseText;
+                }
+                console.log('got response', response);
+            }
+        }
+    };
+    console.log('sending data');
+    xhttp.send(JSON.stringify(formData));
+}
+
 
 
 const alertTrigger = document.getElementById('liveAlertBtn')
 if (alertTrigger) {
   alertTrigger.addEventListener('click', () => {
+    
     console.log('clicked');
     // alert if the form is valid
     formData = {
@@ -123,6 +148,7 @@ if (alertTrigger) {
 
     if (formData['name'] && formData['email'] && formData['number'] && formData['subject'] && 
     formData['message'] && alertPlaceholder.innerHTML == '') {
+        SubForm(formData);
         alert('Your message has been sent. A member of our team will email you shortly', 'success')
         // clear the form
         document.querySelector('input[name="name"]').value = '';

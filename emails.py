@@ -2,7 +2,7 @@ import boto3 # aws sdk
 
 class Email:
     def __init__(self):
-        self.SENDER = "Sender Name <alertsSWM@mail.com>"
+        self.SENDER = "CONTACT FORM INQUIRY <alertsSWM@mail.com>"
         self.RECIPIENT = "daniel-broderick@swiftwebmarketing.com"
         self.AWS_REGION = "us-east-1"
         self.CHARSET = "UTF-8"

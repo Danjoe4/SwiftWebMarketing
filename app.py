@@ -14,17 +14,20 @@ def home():
 def send_email():
     """ Get the data from the POST request and send email to myself with the info
     """
-    app.logger.info('sending email')
+    app.logger.info('gathering data from POST request')
     try:
-        name = request.form['name']
-        email = request.form['email']
-        number = request.form['number']
-        subject = request.form['subject']
-        message = request.form['message']
+        data = request.get_json() 
+        name = data['name']
+        email = data['email']
+        number = data['number']
+        subject = data['subject']
+        message = data['message']
     except Exception as e:
         # should not fail unless the user alters the html
-        app.logger.error(request.form) 
+        app.logger.error(data) 
         app.logger.error(e.with_traceback())
+    
+    app.logger.info('creating email object and sending email')
     email_obj = Email()
     body = email_obj.make_email_html(name, email, number, message)
     try:
@@ -53,8 +56,7 @@ def create_dev_app():
     return app
         
     
-def run_app():
-    app = Flask(__name__)
+def create_app():
     from os import environ
     if environ.get('FLASK_ENV') == 'development':
         app = create_dev_app()
@@ -67,4 +69,4 @@ def run_app():
         
 
 if __name__ == '__main__':
-    run_app()
+    create_app()
