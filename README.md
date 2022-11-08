@@ -8,7 +8,7 @@ https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-
 lsof -i :5000 
 # then 
 kill pid
-# reset clock to sync signature
+# reset clock to sync signature (wsl2 bug)
 sudo hwclock -s
 
 # To connect #####
@@ -29,3 +29,8 @@ python3 app.py --prod
 # nginx 
 sudo systemctl status nginx
 make sure it is working
+
+# dependencies
+pip list 
+add changes to requirements.txt manually
+dev env can be messy and have extra packages but the prod env should be minimalist
