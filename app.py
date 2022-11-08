@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, redirect, url_for, make_response, jsonify
+from flask import Flask, render_template, request
 from botocore.exceptions import ClientError
 from emails import Email
 app = Flask(__name__)
